@@ -15,7 +15,7 @@ make modules_prepare
 cd /nvidia_installers/NVIDIA-Linux-x86_64-${VERSION}
 
 # Apply cuda fix to driver 367.27 for kernel 4.7 machines
-patch -pl < ../4.7_kernel.patch
+patch -p1 < ../4.7_kernel.patch
 
 # Install nvidia driver
 ./nvidia-installer -s -n --kernel-source-path=/usr/src/linux \
