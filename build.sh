@@ -4,8 +4,8 @@
 #
 
 DRIVER_VERSION=${1:-367.27}
-COREOS_TRACK=${2:-alpha}
-COREOS_VERSION=${3:-1097.0.0}
+COREOS_TRACK=${2:-stable}
+COREOS_VERSION=${3:-1122.2.0}
 
 DRIVER_ARCHIVE=NVIDIA-Linux-x86_64-${DRIVER_VERSION}
 DRIVER_ARCHIVE_PATH=${PWD}/nvidia_installers/${DRIVER_ARCHIVE}.run
@@ -48,6 +48,8 @@ chmod +x ${DRIVER_ARCHIVE}.run
 rm -Rf ./${DRIVER_ARCHIVE}
 ./${DRIVER_ARCHIVE}.run -x -s
 popd
+
+cp -ul 4.7_kernel.patch ${WORK_DIR}
 
 sudo systemd-nspawn -i ${DEV_CONTAINER} --share-system \
   --machine=NvidiaDriverContainer \
