@@ -50,6 +50,7 @@ rm -Rf ./${DRIVER_ARCHIVE}
 popd
 
 sudo systemd-nspawn -i ${DEV_CONTAINER} --share-system \
+  --machine=NvidiaDriverContainer \
   --bind=${PWD}/_container_build.sh:/build.sh \
   --bind=${PWD}/${WORK_DIR}:/nvidia_installers \
   /bin/bash -x /build.sh ${DRIVER_VERSION}
